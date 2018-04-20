@@ -1,3 +1,6 @@
+import json
+import re
+
 import lxml
 import lxml.etree
 import requests
@@ -13,8 +16,25 @@ headers = {
 'Accept-Language':'zh-CN,zh;q=0.8',
 }
 
-response = requests.get('http://news.163.com/special/0001386F/rank_tech.html')
-html = lxml.etree.HTML(response.text)
-print(response.text)
-info = html.xpath("//div[@class='tabContents active']/table/tr/td/a")
-print(info)
+response = requests.get('http://yule.sohu.com/_scroll_newslist/20180420/news.inc')
+response.encoding = 'utf8'
+html =response.text
+# html = html.replace('var newsJason = ','')
+re_str1 = re.compile("item:\[(.*)\]")
+info = re_str1.findall(html)[0]
+# info = info.split(',')
+re_str2 = re.compile("\[(.*?),\"(.*?)\",\"(.*?)\",\"(.*?)\"]")
+infolist = re_str2.findall(info)
+for info in infolist:
+    print(info[0])
+    print(info[1])
+    print(info[2])
+    print(info[3])
+# info = dict(html)
+# print(info)
+# info = json.loads(html)
+
+# html = lxml.etree.HTML(response.text)
+# print(response.text)
+# info = html.xpath("//div[@id='c06']/table/tr")
+# print(info)

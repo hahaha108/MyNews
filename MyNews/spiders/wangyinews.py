@@ -8,9 +8,6 @@ from scrapy import Request
 class wangyinewsSpider(RedisSpider):
     """Spider that reads urls from redis queue (qqnews:start_urls)."""
 
-    '''
-    start_url = "http://ent.qq.com/articleList/rolls/"
-    '''
     name = 'wangyinews'
     redis_key = 'wangyinews:start_urls'
     taglist = ['ent','sports','tech']
