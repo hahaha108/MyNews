@@ -71,6 +71,7 @@ ROBOTSTXT_OBEY = False
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'scrapy_redis.pipelines.RedisPipeline': 400,
+    'MyNews.pipelines.MynewsPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

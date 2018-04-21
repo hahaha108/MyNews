@@ -2,12 +2,12 @@ import json
 
 import pymysql
 import redis
-import time
+
 
 
 def saveitem(r,conn,item):
     if r.llen(item) > 0:
-        source, data = r.blpop(item)
+        source, data = r.blpop(item,timeout=1)
         item = json.loads(data)
         try:
             with conn.cursor() as cur:
@@ -17,7 +17,8 @@ def saveitem(r,conn,item):
                 conn.commit()
                 print("inserted %s" % item['title'])
         except Exception as e:
-            print(e)
+            # print(e)
+            pass
     else:
         pass
 
@@ -60,6 +61,9 @@ while True:
     saveitem(r, conn, 'ifengnews:items')
     saveitem(r, conn, 'sohunews:items')
     saveitem(r, conn, 'wangyinews:items')
+    saveitem(r, conn, 'EastmoneyNews:items')
+    saveitem(r, conn, 'sinanews:items')
+    saveitem(r, conn, 'peoplenews:items')
     conn.close()
 
 
