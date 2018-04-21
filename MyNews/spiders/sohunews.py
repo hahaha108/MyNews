@@ -83,6 +83,7 @@ class sohunewsSpider(RedisSpider):
         item['pubtime'] = meta['pubtime']
         item['url'] = response.url
         item['body'] = '\n'.join(response.xpath("//article[@id='mp-editor']/p/text()").extract())
+        item['refer'] = '搜狐新闻'
 
         if not item['body'] ==  '':
             yield item

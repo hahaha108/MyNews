@@ -49,6 +49,7 @@ class wangyinewsSpider(RedisSpider):
         item['tag'] = meta['tag']
         item['title']= meta['title']
         item['url'] = response.url
+        item['refer'] = '网易新闻'
         item['body'] = '\n'.join(response.xpath("//div[@id='epContentLeft']/div[@class='post_body']/div[@id='endText']/p/text()").extract())
         pubtime = response.xpath("//div[@id='epContentLeft']/div[@class='post_time_source']/text()[1]").extract()
         if pubtime:

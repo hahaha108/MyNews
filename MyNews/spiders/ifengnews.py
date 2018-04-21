@@ -86,6 +86,7 @@ class ifengnewsSpider(RedisSpider):
         item['pubtime'] = meta['pubtime']
         item['url'] = response.url
         item['body'] = '\n'.join(response.xpath("//div[@id='main_content']/p/text()").extract())
+        item['refer'] = '凤凰新闻'
         if not item['body'] ==  '':
             yield item
 

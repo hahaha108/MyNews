@@ -23,7 +23,7 @@ class qqnewsSpider(RedisSpider):
 
     def parse(self,response):
         for tag in self.taglist:
-            url = 'http://roll.news.qq.com/interface/cpcroll.php?site='+tag+'&mode=1&cata=&date=2018-04-19&page=1'
+            url = 'http://roll.news.qq.com/interface/cpcroll.php?site='+tag+'&mode=1&cata=&date=2018-04-20&page=1'
             yield Request(url,callback=self.parsepage,headers=qqheaders,meta={'tag':tag},dont_filter=True)
 
     def parsepage(self,response):
@@ -49,7 +49,9 @@ class qqnewsSpider(RedisSpider):
         item['url'] = response.url
         item['body'] = '\n'.join(response.xpath("//div[@id='Cnt-Main-Article-QQ']/p[@class='text']/text()").extract())
         item['pubtime'] = meta['pubtime']
-        yield item
+        item['refer'] = '腾讯新闻'
+        if not item['body'] ==  '':
+            yield item
 
 
 

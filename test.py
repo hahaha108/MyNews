@@ -38,3 +38,4 @@ for info in infolist:
 # print(response.text)
 # info = html.xpath("//div[@id='c06']/table/tr")
 # print(info)
+

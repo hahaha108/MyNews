@@ -15,10 +15,12 @@ class NewsItem(Item):
     title = Field() #标题
     body = Field() #内容
     url = Field()
+    refer = Field()
     tag = Field()
     pubtime = Field() #发布时间
     crawled = Field()
     spider = Field()
+
 
 
 
